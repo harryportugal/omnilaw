@@ -51,31 +51,31 @@ export function DigitalArcExactHero() {
 
         {/* Hero Section */}
         <main className="relative z-10 flex flex-col items-center text-center pt-24 pb-20 px-4 w-full">
-          {/* Left Flanking Image */}
+          {/* Left Flanking Image (juridico 2.png - inverted) */}
           <motion.div
-            className="hidden lg:block absolute left-[-60px] xl:left-[-140px] top-1/2 -translate-y-1/2 w-[360px] xl:w-[480px] z-0 pointer-events-none"
-            initial={{ opacity: 0, x: -60 }}
-            animate={{ opacity: 0.95, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <img
-              src="/juridico.png"
-              alt="Ilustração Jurídica"
-              className="w-full h-auto object-contain filter drop-shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
-            />
-          </motion.div>
-
-          {/* Right Flanking Image */}
-          <motion.div
-            className="hidden lg:block absolute right-[-60px] xl:right-[-140px] top-1/2 -translate-y-1/2 w-[360px] xl:w-[480px] z-0 pointer-events-none"
-            initial={{ opacity: 0, x: 60 }}
+            className="hidden lg:block absolute left-[-160px] lg:left-[-220px] xl:left-[-280px] top-1/2 -translate-y-1/2 w-[520px] lg:w-[620px] xl:w-[720px] z-0 pointer-events-none"
+            initial={{ opacity: 0, x: -80 }}
             animate={{ opacity: 0.95, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img
               src="/juridico 2.png"
-              alt="Ilustração Jurídica 2"
-              className="w-full h-auto object-contain filter drop-shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
+              alt="Ilustração Jurídica Esquerda"
+              className="w-full h-auto object-contain filter drop-shadow-[0_30px_70px_rgba(0,0,0,0.8)]"
+            />
+          </motion.div>
+
+          {/* Right Flanking Image (juridico.png - inverted) */}
+          <motion.div
+            className="hidden lg:block absolute right-[-160px] lg:right-[-220px] xl:right-[-280px] top-1/2 -translate-y-1/2 w-[520px] lg:w-[620px] xl:w-[720px] z-0 pointer-events-none"
+            initial={{ opacity: 0, x: 80 }}
+            animate={{ opacity: 0.95, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <img
+              src="/juridico.png"
+              alt="Ilustração Jurídica Direita"
+              className="w-full h-auto object-contain filter drop-shadow-[0_30px_70px_rgba(0,0,0,0.8)]"
             />
           </motion.div>
 
