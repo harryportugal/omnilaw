@@ -51,10 +51,38 @@ export function DigitalArcExactHero() {
 
         {/* Hero Section */}
         <main className="relative z-10 flex flex-col items-center text-center pt-24 pb-20 px-4 w-full">
+          {/* Left Flanking Image */}
+          <motion.div
+            className="hidden lg:block absolute left-[-60px] xl:left-[-140px] top-1/2 -translate-y-1/2 w-[360px] xl:w-[480px] z-0 pointer-events-none"
+            initial={{ opacity: 0, x: -60 }}
+            animate={{ opacity: 0.95, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <img
+              src="/juridico.png"
+              alt="Ilustração Jurídica"
+              className="w-full h-auto object-contain filter drop-shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
+            />
+          </motion.div>
+
+          {/* Right Flanking Image */}
+          <motion.div
+            className="hidden lg:block absolute right-[-60px] xl:right-[-140px] top-1/2 -translate-y-1/2 w-[360px] xl:w-[480px] z-0 pointer-events-none"
+            initial={{ opacity: 0, x: 60 }}
+            animate={{ opacity: 0.95, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <img
+              src="/juridico 2.png"
+              alt="Ilustração Jurídica 2"
+              className="w-full h-auto object-contain filter drop-shadow-[0_25px_60px_rgba(0,0,0,0.7)]"
+            />
+          </motion.div>
+
           {/* Badge Pill */}
           <motion.a
             href="#"
-            className="inline-flex items-center gap-2 bg-white/[0.03] hover:bg-white/[0.06] rounded-full px-4 py-1.5 text-xs text-white transition-colors mb-8 cursor-pointer"
+            className="relative z-10 inline-flex items-center gap-2 bg-white/[0.03] hover:bg-white/[0.06] rounded-full px-4 py-1.5 text-xs text-white transition-colors mb-8 cursor-pointer"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -65,7 +93,7 @@ export function DigitalArcExactHero() {
 
           {/* H1 Headline (Super enxuta, 1 linha) */}
           <motion.h1
-            className="text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-['Inter',sans-serif] font-normal tracking-tight text-white mb-6 leading-tight whitespace-nowrap"
+            className="relative z-10 text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-['Inter',sans-serif] font-normal tracking-tight text-white mb-6 leading-tight whitespace-nowrap"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -75,7 +103,7 @@ export function DigitalArcExactHero() {
 
           {/* Subtitle / Description */}
           <motion.p
-            className="text-[16px] text-white max-w-[760px] leading-relaxed mb-10"
+            className="relative z-10 text-[16px] text-white max-w-[760px] leading-relaxed mb-10"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -85,7 +113,7 @@ export function DigitalArcExactHero() {
 
           {/* Action Buttons */}
           <motion.div
-            className="flex items-center gap-4"
+            className="relative z-10 flex items-center gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
