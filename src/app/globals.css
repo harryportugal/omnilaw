@@ -1,0 +1,61 @@
+@import "tailwindcss" source(none);
+@source "../src";
+
+@theme inline {
+  --font-serif: "De Floria", "Playfair Display", "Instrument Serif", Georgia, serif;
+  --font-display: "Baflion Sans", "Inter Tight", "Inter", system-ui, sans-serif;
+  --font-sans: "Baflion Sans", "Inter", system-ui, sans-serif;
+  --font-mono: "Geist Mono", monospace;
+  --color-primary: #173CE0;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+}
+
+:root {
+  --background: #000000;
+  --foreground: #f5f5f5;
+  --primary: #173CE0;
+}
+
+@layer base {
+  html, body {
+    background-color: #000000;
+    color: #f5f5f5;
+    font-family: var(--font-display);
+    -webkit-font-smoothing: antialiased;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+    width: 0px;
+    height: 0px;
+    background: transparent;
+  }
+
+  h1, h2, h3, .font-serif-title {
+    font-family: var(--font-serif);
+  }
+}
+
+@keyframes rise-up {
+  0% { opacity: 0; transform: translateY(24px); }
+  60% { opacity: 1; }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.6); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes reveal-right {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+.anim-rise { opacity: 0; animation: rise-up 1s ease-out forwards; }
+.anim-pop  { opacity: 0; animation: pop-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.anim-reveal-right { clip-path: inset(0 100% 0 0); animation: reveal-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.word-stagger > span { display: inline-block; opacity: 0; animation: rise-up 0.9s ease-out forwards; }
