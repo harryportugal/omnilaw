@@ -51,10 +51,10 @@ export function DigitalArcExactHero() {
 
         {/* Hero Section */}
         <main className="relative z-10 flex flex-col items-center text-center pt-24 pb-20 px-4 w-full">
-          {/* Left Flanking Image (juridico 2.png - inverted) */}
+          {/* Left Flanking Image (juridico 2.png - Front layer, lower, further out) */}
           <motion.div
-            className="hidden lg:block absolute left-[-160px] lg:left-[-220px] xl:left-[-280px] top-1/2 -translate-y-1/2 w-[520px] lg:w-[620px] xl:w-[720px] z-0 pointer-events-none"
-            initial={{ opacity: 0, x: -80 }}
+            className="hidden lg:block absolute left-[-220px] lg:left-[-320px] xl:left-[-420px] top-[58%] -translate-y-1/2 w-[580px] lg:w-[700px] xl:w-[820px] z-40 pointer-events-none"
+            initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 0.95, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
@@ -65,10 +65,10 @@ export function DigitalArcExactHero() {
             />
           </motion.div>
 
-          {/* Right Flanking Image (juridico.png - inverted) */}
+          {/* Right Flanking Image (juridico.png - Front layer, lower, further out) */}
           <motion.div
-            className="hidden lg:block absolute right-[-160px] lg:right-[-220px] xl:right-[-280px] top-1/2 -translate-y-1/2 w-[520px] lg:w-[620px] xl:w-[720px] z-0 pointer-events-none"
-            initial={{ opacity: 0, x: 80 }}
+            className="hidden lg:block absolute right-[-220px] lg:right-[-320px] xl:right-[-420px] top-[58%] -translate-y-1/2 w-[580px] lg:w-[700px] xl:w-[820px] z-40 pointer-events-none"
+            initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 0.95, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
