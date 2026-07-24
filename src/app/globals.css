@@ -1,5 +1,4 @@
-@import "tailwindcss" source(none);
-@source "../src";
+@import "tailwindcss";
 
 @theme inline {
   --font-serif: "De Floria", "Playfair Display", "Instrument Serif", Georgia, serif;
