@@ -124,3 +124,69 @@
 .shiny-blue-btn:hover {
   box-shadow: 0 0 35px rgba(59, 130, 246, 0.75);
 }
+
+@keyframes float-light-left-rich {
+  0% {
+    transform: translate3d(0, 0px, 0) scale(0.95) rotate(0deg);
+    opacity: 0.75;
+    background-position: 0% 0%;
+  }
+  25% {
+    transform: translate3d(20px, 20px, 0) scale(1.3) rotate(45deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate3d(0, 40px, 0) scale(1) rotate(90deg);
+    opacity: 0.8;
+    background-position: 200% 200%;
+  }
+  75% {
+    transform: translate3d(-20px, 20px, 0) scale(1.25) rotate(45deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 0px, 0) scale(0.95) rotate(0deg);
+    opacity: 0.75;
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes float-light-right-rich {
+  0% {
+    transform: translate3d(0, 0px, 0) scale(1.25) rotate(0deg);
+    opacity: 0.8;
+    background-position: 200% 200%;
+  }
+  25% {
+    transform: translate3d(-20px, 20px, 0) scale(0.95) rotate(-45deg);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translate3d(0, 40px, 0) scale(1.2) rotate(-90deg);
+    opacity: 0.75;
+    background-position: 0% 0%;
+  }
+  75% {
+    transform: translate3d(20px, 20px, 0) scale(0.9) rotate(-45deg);
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(0, 0px, 0) scale(1.25) rotate(0deg);
+    opacity: 0.8;
+    background-position: 200% 200%;
+  }
+}
+
+.ambient-light-left-rich {
+  animation: float-light-left-rich 6s ease-in-out infinite;
+  will-change: transform, opacity, background-position;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.ambient-light-right-rich {
+  animation: float-light-right-rich 6.5s ease-in-out infinite;
+  will-change: transform, opacity, background-position;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

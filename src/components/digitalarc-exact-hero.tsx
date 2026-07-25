@@ -4,9 +4,32 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { BrainCircuit, FolderKanban, CalendarClock, Receipt, LineChart } from "lucide-react";
 import { ButtonWithIcon } from "@/components/ui/button-with-icon";
+import { FeatureShowcaseSection } from "@/components/feature-showcase-section";
 
 export function DigitalArcExactHero() {
   const [activeTab, setActiveTab] = useState(0);
+
+  // Scroll to absolute top of page on reload
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+    }
+  }, []);
+
+  const dashRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: dashScrollProgress } = useScroll({
+    target: dashRef,
+    offset: ["start 0.9", "start 0.35"],
+  });
+
+  const dashFilter = useTransform(
+    dashScrollProgress,
+    [0, 1],
+    ["grayscale(100%) contrast(105%)", "grayscale(0%) contrast(100%)"]
+  );
 
   const tabs = [
     { id: 0, label: "IA Jurídica", icon: BrainCircuit },
@@ -19,48 +42,24 @@ export function DigitalArcExactHero() {
   return (
     <div className="relative w-full min-h-screen bg-[#060608] text-white font-sans overflow-x-hidden flex flex-col selection:bg-white selection:text-black">
       {/* Background Left Shiny Blue Ambient Light (Floating across page background) */}
-      <motion.div
-        className="absolute -top-10 left-0 -translate-x-[50%] w-[950px] h-[950px] rounded-full blur-[110px] pointer-events-none z-0 mix-blend-screen opacity-90"
+      <div
+        className="ambient-light-left-rich absolute -top-10 left-0 -translate-x-[50%] w-[950px] h-[950px] rounded-full blur-[110px] pointer-events-none z-0 mix-blend-screen opacity-90"
         style={{
           backgroundImage: "linear-gradient(110deg, #1d4ed8 0%, #2563eb 25%, #60a5fa 40%, #ffffff 50%, #60a5fa 60%, #2563eb 75%, #1d4ed8 100%)",
           backgroundSize: "200% 200%",
         }}
-        animate={{
-          scale: [0.95, 1.3, 1, 1.25, 0.95],
-          opacity: [0.75, 0.95, 0.8, 0.95, 0.75],
-          backgroundPosition: ["0% 0%", "200% 200%", "0% 0%"],
-          rotate: [0, 45, 90, 45, 0],
-          y: [0, 40, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
       />
 
       {/* Background Right Shiny Blue Ambient Light (Floating across page background) */}
-      <motion.div
-        className="absolute -top-10 right-0 translate-x-[50%] w-[950px] h-[950px] rounded-full blur-[110px] pointer-events-none z-0 mix-blend-screen opacity-90"
+      <div
+        className="ambient-light-right-rich absolute -top-10 right-0 translate-x-[50%] w-[950px] h-[950px] rounded-full blur-[110px] pointer-events-none z-0 mix-blend-screen opacity-90"
         style={{
           backgroundImage: "linear-gradient(110deg, #1e40af 0%, #3b82f6 25%, #93c5fd 40%, #ffffff 50%, #93c5fd 60%, #3b82f6 75%, #1e40af 100%)",
           backgroundSize: "200% 200%",
         }}
-        animate={{
-          scale: [1.25, 0.95, 1.2, 0.9, 1.25],
-          opacity: [0.8, 0.95, 0.75, 0.95, 0.8],
-          backgroundPosition: ["200% 200%", "0% 0%", "200% 200%"],
-          rotate: [0, -45, -90, -45, 0],
-          y: [0, 40, 0],
-        }}
-        transition={{
-          duration: 6.5,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
       />
 
-      {/* Top Navbar */}
+      {/* Top Navbar (Estática sem animação de entrada) */}
       <header className="w-full border-b border-white/[0.15] flex justify-center relative z-50 bg-[#060608]/80 backdrop-blur-md">
         <div className="w-full max-w-[1340px] px-6 py-5 flex items-center justify-between">
           {/* Brand Logo */}
@@ -89,73 +88,81 @@ export function DigitalArcExactHero() {
       </header>
 
       {/* Main Content Area with Dark Frosted Glass & Vertical Grid Lines */}
-      <div className="w-full max-w-[1340px] mx-auto relative flex flex-col border-x border-white/[0.12] flex-1 bg-[#060608]/55 backdrop-blur-xl shadow-2xl">
+      <div className="w-full max-w-[1340px] mx-auto relative flex flex-col border-x border-white/[0.12] flex-1 bg-[#060608]/55 backdrop-blur-xl shadow-2xl transform-gpu">
 
         {/* Hero Section */}
         <main className="relative z-40 flex flex-col items-center text-center pt-24 pb-20 px-4 w-full">
 
-          {/* Badge Pill */}
+          {/* Cascata #1: Badge Pill */}
           <motion.a
             href="#"
             className="relative z-10 inline-flex items-center gap-2 bg-white/[0.03] hover:bg-white/[0.06] rounded-full px-4 py-1.5 text-xs text-white transition-colors mb-8 cursor-pointer"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, y: 25, scale: 0.94 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
           >
             <span>Conheça o Omnilaw IA</span>
             <span className="text-white">→</span>
           </motion.a>
 
-          {/* H1 Headline (Super enxuta, 1 linha) */}
+          {/* Cascata #2: H1 Headline */}
           <motion.h1
             className="relative z-10 text-3xl sm:text-5xl md:text-6xl lg:text-[68px] font-['Inter',sans-serif] font-normal tracking-tight text-white mb-6 leading-tight whitespace-nowrap"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           >
             Automatize sua rotina <span className="shiny-blue-text">jurídica</span> com <span className="shiny-blue-text">IA</span>
           </motion.h1>
 
-          {/* Subtitle / Description */}
+          {/* Cascata #3: Subtitle / Description */}
           <motion.p
             className="relative z-10 text-[16px] text-white max-w-[760px] leading-relaxed mb-10"
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
           >
             O Omnilaw conecta processos, tribunais e cobranças em um ecossistema com inteligência artificial. Menos retrabalho, mais capacidade operacional.
           </motion.p>
 
-          {/* Action Buttons */}
-          <motion.div
-            className="relative z-10 flex items-center gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-          >
-            <ButtonWithIcon text="Começar Agora" />
-            <button className="bg-white/[0.03] hover:bg-white/[0.08] text-white text-[14px] font-normal rounded-full px-6 py-2.5 transition-colors cursor-pointer">
+          {/* Cascata #4 & #5: Action Buttons (Entrada Independente Cada Um) */}
+          <div className="relative z-10 flex items-center gap-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <ButtonWithIcon text="Começar Agora" />
+            </motion.div>
+            <motion.button
+              className="bg-white/[0.03] hover:bg-white/[0.08] text-white text-[14px] font-normal rounded-full px-6 py-2.5 transition-colors cursor-pointer"
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.78, ease: [0.22, 1, 0.36, 1] }}
+            >
               Agendar Demonstração
-            </button>
-          </motion.div>
+            </motion.button>
+          </div>
         </main>
 
-        {/* Tab Navigation Header Bar */}
+        {/* Cascata #6: Tab Navigation Header Bar */}
         <motion.div
           className="relative z-10 w-full border-y border-white/[0.2] bg-[#060608]"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 25 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="grid grid-cols-2 md:grid-cols-5 text-[16px] font-normal divide-x divide-white/[0.2]">
-            {tabs.map((tab) => {
+            {tabs.map((tab, idx) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
               return (
-                <button
+                <motion.button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 1.0 + idx * 0.08, ease: [0.22, 1, 0.36, 1] }}
                   className={`flex items-center justify-center gap-3.5 py-6.5 px-6 transition-all relative cursor-pointer ${
                     isActive
                       ? "bg-transparent text-white"
@@ -170,21 +177,21 @@ export function DigitalArcExactHero() {
                       className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-white z-20"
                     />
                   )}
-                </button>
+                </motion.button>
               );
             })}
           </div>
         </motion.div>
 
-        {/* Dashboard Frame (Moldura com Animação de Entrada) */}
+        {/* Cascata #7: Dashboard Frame (Com revelação suave após as abas) */}
         <motion.div
+          ref={dashRef}
           className="relative z-10 w-full flex-1 min-h-[550px] flex justify-center px-4 md:px-8 pt-10 pb-12 overflow-hidden bg-[#060608]"
-          initial={{ opacity: 0, y: 40, scale: 0.97 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: "easeOut" }}
+          initial={{ opacity: 0, y: 35 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          {/* Background Image (back dack.webp) */}
+          {/* Background Image (back dack.webp - Fixo sem animação de entrada) */}
           <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
             <img
               src="/back dack.webp"
@@ -193,91 +200,14 @@ export function DigitalArcExactHero() {
             />
           </div>
 
-          {/* Wireframe Dashboard Mockup */}
-          <div className="relative z-20 w-full max-w-[1140px] bg-[#111113] rounded-xl shadow-2xl flex flex-col overflow-hidden h-[660px]">
-            
-            {/* Top Bar Wireframe */}
-            <div className="h-14 flex items-center justify-between px-4 bg-[#1a1a1c]">
-               {/* Logo area */}
-               <div className="flex items-center gap-2">
-                 <div className="size-6 bg-white/10 rounded-md" />
-                 <div className="h-3 w-20 bg-white/10 rounded" />
-               </div>
-               
-               {/* Right actions */}
-               <div className="flex items-center gap-3">
-                 <div className="flex bg-black/40 rounded-md p-1">
-                   <div className="size-6 bg-white/10 rounded" />
-                   <div className="size-6 rounded" />
-                 </div>
-                 <div className="size-8 bg-white/5 rounded-md flex items-center justify-center">
-                   <div className="size-4 rounded-full bg-white/10" />
-                 </div>
-               </div>
-            </div>
-
-            {/* Main Content Area */}
-            <div className="flex flex-1 overflow-hidden">
-              {/* Sidebar */}
-              <div className="w-56 p-4 hidden md:flex flex-col gap-6 bg-[#141416]">
-                <div className="h-8 bg-white/5 rounded-md" />
-                <div className="space-y-3">
-                  <div className="h-2 w-12 bg-white/10 rounded mb-4" />
-                  <div className="h-8 bg-white/10 rounded-md" />
-                  <div className="h-8 bg-white/[0.04] rounded-md" />
-                  <div className="h-8 bg-white/[0.04] rounded-md" />
-                  <div className="h-8 bg-white/[0.04] rounded-md" />
-                  <div className="h-8 bg-white/[0.04] rounded-md" />
-                </div>
-              </div>
-
-              {/* Dashboard Content */}
-              <div className="flex-1 p-6 flex flex-col gap-6 bg-[#101012]">
-                 {/* Title & Tabs */}
-                 <div className="flex justify-between items-center">
-                   <div className="h-6 w-32 bg-white/10 rounded" />
-                   <div className="h-8 w-64 bg-white/5 rounded-md" />
-                 </div>
-
-                 {/* Metric Cards Row 1 */}
-                 <div className="grid grid-cols-3 gap-4">
-                   <div className="h-24 bg-[#1e1e22] rounded-lg p-4 flex flex-col justify-between">
-                     <div className="h-3 w-24 bg-white/10 rounded" />
-                     <div className="h-6 w-20 bg-white/20 rounded" />
-                   </div>
-                   <div className="h-24 bg-[#1e1e22] rounded-lg p-4 flex flex-col justify-between">
-                     <div className="h-3 w-24 bg-white/10 rounded" />
-                     <div className="h-6 w-16 bg-white/20 rounded" />
-                   </div>
-                   <div className="h-24 bg-[#1e1e22] rounded-lg p-4 flex flex-col justify-between">
-                     <div className="h-3 w-32 bg-white/10 rounded" />
-                     <div className="h-6 w-16 bg-white/20 rounded" />
-                   </div>
-                 </div>
-
-                 {/* Metric Cards Row 2 */}
-                 <div className="grid grid-cols-2 gap-4 flex-1">
-                   <div className="bg-[#1e1e22] rounded-lg p-4 flex flex-col justify-between">
-                     <div className="h-3 w-32 bg-white/10 rounded" />
-                     <div className="h-8 w-40 bg-white/20 rounded" />
-                     <div className="h-2 w-full bg-white/5 rounded mt-4" />
-                   </div>
-                   <div className="grid grid-rows-2 gap-4">
-                     <div className="bg-[#1e1e22] rounded-lg p-4">
-                       <div className="h-3 w-32 bg-white/10 rounded mb-4" />
-                       <div className="h-12 w-full bg-white/5 rounded" />
-                     </div>
-                     <div className="bg-[#1e1e22] rounded-lg p-4 flex items-end gap-2">
-                       <div className="w-full h-[60%] bg-white/5 rounded-t" />
-                       <div className="w-full h-[80%] bg-white/10 rounded-t" />
-                       <div className="w-full h-[40%] bg-white/5 rounded-t" />
-                       <div className="w-full h-[90%] bg-white/10 rounded-t" />
-                       <div className="w-full h-[50%] bg-white/5 rounded-t" />
-                     </div>
-                   </div>
-                 </div>
-              </div>
-            </div>
+          {/* Dashboard Image (dash omni.webp - Monocromático que ganha cor no Scroll) */}
+          <div className="relative z-20 w-full max-w-[1140px] rounded-xl shadow-2xl overflow-hidden border border-white/10 bg-[#111113]">
+            <motion.img
+              src="/dash omni.webp"
+              alt="Omnilaw Dashboard"
+              style={{ filter: dashFilter }}
+              className="w-full h-auto object-contain rounded-xl block transition-all duration-300"
+            />
           </div>
         </motion.div>
 
@@ -332,7 +262,7 @@ export function DigitalArcExactHero() {
           
           {/* Outer Left Image (juridico 2.webp) - Enlarged & Positioned Lower */}
           <motion.div
-            className="absolute top-[75%] left-0 -translate-x-[55%] -translate-y-1/2 w-[340px] sm:w-[420px] md:w-[500px] lg:w-[560px] xl:w-[620px] aspect-[4/5] rounded-3xl overflow-hidden z-20 pointer-events-none"
+            className="absolute top-[75%] left-0 -translate-x-[55%] -translate-y-1/2 w-[340px] sm:w-[420px] md:w-[500px] lg:w-[560px] xl:w-[620px] aspect-[4/5] rounded-3xl overflow-hidden z-20 pointer-events-none transform-gpu will-change-transform"
             initial={{ opacity: 0, x: -80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -369,7 +299,7 @@ export function DigitalArcExactHero() {
 
           {/* Outer Right Image (juridico.webp) - Enlarged & Positioned Much Lower */}
           <motion.div
-            className="absolute top-[125%] right-0 translate-x-[55%] -translate-y-1/2 w-[340px] sm:w-[420px] md:w-[500px] lg:w-[560px] xl:w-[620px] aspect-[4/5] rounded-3xl overflow-hidden z-20 pointer-events-none"
+            className="absolute top-[125%] right-0 translate-x-[55%] -translate-y-1/2 w-[340px] sm:w-[420px] md:w-[500px] lg:w-[560px] xl:w-[620px] aspect-[4/5] rounded-3xl overflow-hidden z-20 pointer-events-none transform-gpu will-change-transform"
             initial={{ opacity: 0, x: 80 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -554,6 +484,9 @@ export function DigitalArcExactHero() {
             </div>
           </div>
         </div>
+
+        {/* Feature Showcase Section (Última Seção da Página - Estilo Atomist 100% Azul) */}
+        <FeatureShowcaseSection />
       </div>
     </div>
   );
@@ -622,26 +555,45 @@ function ScrollRevealText({ text }: { text: string }) {
       ref={containerRef}
       className="text-2xl sm:text-4xl md:text-[46px] font-normal leading-[1.3] tracking-tight text-center max-w-4xl mx-auto flex flex-wrap justify-center gap-x-[0.32em] gap-y-2 select-none font-['Inter',sans-serif]"
     >
-      {words.map((word, i) => {
-        const start = i / words.length;
-        const end = start + 1 / words.length;
-        const opacity = useTransform(scrollYProgress, [start, end], [0.2, 1]);
-        const color = useTransform(
-          scrollYProgress,
-          [start, end],
-          ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 1)"]
-        );
-
-        return (
-          <motion.span
-            key={i}
-            style={{ opacity, color }}
-            className="transition-colors duration-100 inline-block"
-          >
-            {word}
-          </motion.span>
-        );
-      })}
+      {words.map((word, i) => (
+        <Word
+          key={i}
+          word={word}
+          index={i}
+          total={words.length}
+          progress={scrollYProgress}
+        />
+      ))}
     </p>
   );
 }
+
+const Word = React.memo(function Word({
+  word,
+  index,
+  total,
+  progress,
+}: {
+  word: string;
+  index: number;
+  total: number;
+  progress: any;
+}) {
+  const start = index / total;
+  const end = start + 1 / total;
+  const opacity = useTransform(progress, [start, end], [0.2, 1]);
+  const color = useTransform(
+    progress,
+    [start, end],
+    ["rgba(255, 255, 255, 0.2)", "rgba(255, 255, 255, 1)"]
+  );
+
+  return (
+    <motion.span
+      style={{ opacity, color }}
+      className="inline-block transform-gpu will-change-[opacity,color]"
+    >
+      {word}
+    </motion.span>
+  );
+});
