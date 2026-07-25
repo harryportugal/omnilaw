@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 export const metadata: Metadata = {
   title: "Omnilaw — Plataforma Jurídica com Inteligência Artificial",
@@ -27,7 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className="h-full bg-[#0d0d11] text-[#f5f5f5] selection:bg-[#173CE0] selection:text-white">
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );

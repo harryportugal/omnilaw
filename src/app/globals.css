@@ -26,6 +26,22 @@
     scrollbar-width: none;
   }
 
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
   ::-webkit-scrollbar {
     display: none;
     width: 0px;
@@ -58,3 +74,53 @@
 .anim-pop  { opacity: 0; animation: pop-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .anim-reveal-right { clip-path: inset(0 100% 0 0); animation: reveal-right 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
 .word-stagger > span { display: inline-block; opacity: 0; animation: rise-up 0.9s ease-out forwards; }
+
+@keyframes shiny-blue-pass {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.shiny-blue-text {
+  background: linear-gradient(
+    110deg,
+    #2563eb 0%,
+    #3b82f6 25%,
+    #93c5fd 42%,
+    #ffffff 50%,
+    #93c5fd 58%,
+    #3b82f6 75%,
+    #2563eb 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  animation: shiny-blue-pass 3.5s infinite linear;
+}
+
+.shiny-blue-btn {
+  background: linear-gradient(
+    110deg,
+    #1d4ed8 0%,
+    #2563eb 25%,
+    #60a5fa 42%,
+    #ffffff 50%,
+    #60a5fa 58%,
+    #2563eb 75%,
+    #1d4ed8 100%
+  );
+  background-size: 200% auto;
+  color: #ffffff;
+  animation: shiny-blue-pass 3.5s infinite linear;
+  box-shadow: 0 0 24px rgba(37, 99, 235, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.shiny-blue-btn:hover {
+  box-shadow: 0 0 35px rgba(59, 130, 246, 0.75);
+}

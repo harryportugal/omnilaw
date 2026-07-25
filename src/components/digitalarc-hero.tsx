@@ -46,21 +46,21 @@ export function DigitalArcHero() {
           <div className="size-6 text-white transition-transform group-hover:rotate-45 duration-300">
             <Sparkles className="size-6 fill-white text-white" />
           </div>
-          <span className="text-xl font-bold tracking-tight text-white font-sans">
+          <span className="text-xl font-normal tracking-tight text-white font-sans">
             Omnilaw
           </span>
         </a>
 
-        {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-300">
-          <a href="#" className="text-white hover:text-white transition-colors">
+        {/* Center Navigation Links */}
+        <nav className="hidden md:flex items-center gap-8 text-sm font-normal text-neutral-300">
+          <a href="#" className="hover:text-white transition-colors">
             Início
           </a>
           <a href="#" className="hover:text-white transition-colors">
             Plataforma
           </a>
           <a href="#" className="hover:text-white transition-colors">
-            Soluções
+            Recursos
           </a>
           <a href="#" className="hover:text-white transition-colors">
             Casos de Sucesso
@@ -70,15 +70,15 @@ export function DigitalArcHero() {
           </a>
         </nav>
 
-        {/* Right Action */}
-        <button className="bg-white hover:bg-neutral-200 text-black text-xs sm:text-sm font-semibold rounded-full px-5 py-2 transition-all cursor-pointer shadow-md">
+        {/* Action Button */}
+        <button className="bg-white hover:bg-neutral-200 text-black text-xs font-normal rounded-full px-5 py-2.5 transition-colors cursor-pointer font-sans">
           Testar Grátis
         </button>
       </header>
 
-      {/* Hero Section */}
-      <main className="flex-1 flex flex-col items-center justify-center text-center px-4 pt-12 pb-8 max-w-5xl mx-auto w-full z-10">
-        {/* Update Badge Pill */}
+      {/* Hero Section Container with vertical grid borders */}
+      <main className="w-full max-w-6xl mx-auto flex flex-col items-center text-center pt-24 pb-16 px-4 border-x border-white/10 relative z-10">
+        {/* Top Badge Pill */}
         <motion.a
           href="#"
           className="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 rounded-full px-4 py-1.5 text-xs text-neutral-300 transition-colors mb-8 cursor-pointer"
@@ -92,12 +92,12 @@ export function DigitalArcHero() {
 
         {/* Main Headline */}
         <motion.h1
-          className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white max-w-4xl mb-6 font-sans leading-[1.08]"
+          className="text-4xl sm:text-6xl md:text-7xl font-normal tracking-tight text-white max-w-4xl mb-6 font-sans leading-[1.08]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          Automatize sua rotina jurídica com IA
+          Automatize sua rotina <span className="shiny-blue-text">jurídica</span> com <span className="shiny-blue-text">IA</span>
         </motion.h1>
 
         {/* Subtitle */}
